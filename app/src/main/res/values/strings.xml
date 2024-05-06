@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Blood Pressure 2</string>
+    <string name="requestFolderAccess">In order to save CSV files, you must grant access to a folder</string>
+    <string name="requestFolderAccessContentDescription">Give folder access</string>
+</resources>

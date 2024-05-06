@@ -1,0 +1,39 @@
+import co.uk.purpleeagle.bloodpressure2.model.record.RecordStatus;
+
+CREATE TABLE IF NOT EXISTS SavedRecord (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    systolicPressure TEXT NOT NULL,
+    diastolicPressure TEXT NOT NULL,
+    pulse TEXT NOT NULL,
+    createdAt INTEGER NOT NULL,
+    status TEXT AS RecordStatus NOT NULL,
+    comment TEXT NOT NULL
+);
+
+getAll:
+SELECT *
+FROM SavedRecord
+ORDER BY createdAt DESC;
+
+getById:
+SELECT *
+FROM SavedRecord
+WHERE id = :id;
+
+getByStatus:
+SELECT *
+FROM SavedRecord
+WHERE status = :status
+ORDER BY createdAt DESC;
+
+insert:
+INSERT OR REPLACE INTO SavedRecord
+VALUES ?;
+
+deleteById:
+DELETE FROM SavedRecord
+WHERE id = :id;
+
+deleteByStatus:
+DELETE FROM SavedRecord
+WHERE status = :status;
