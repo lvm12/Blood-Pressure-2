@@ -1,6 +1,7 @@
 package co.uk.purpleeagle.bloodpressure2.view.screens
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -16,11 +17,9 @@ import co.uk.purpleeagle.bloodpressure2.view.components.edit.RecordValidator
 import co.uk.purpleeagle.bloodpressure2.view.components.edit.inside
 import co.uk.purpleeagle.bloodpressure2.viewmodel.Event
 import co.uk.purpleeagle.bloodpressure2.viewmodel.ModelState
-import co.uk.purpleeagle.bloodpressure2.viewmodel.UiState
 
 @Composable
 fun EditScreen(
-    uiState: UiState,
     modelState: ModelState,
     onEvent: (Event) -> Unit
 ) {
@@ -46,13 +45,19 @@ fun EditScreen(
         FocusRequester()
     }
     LaunchedEffect(modelState.currentRecord.systolicPressure.length == 3){
-        diaFr.requestFocus()
+        if (modelState.currentRecord.systolicPressure.length == 3) {
+            diaFr.requestFocus()
+        }
     }
     LaunchedEffect(modelState.currentRecord.diastolicPressure.length == 2){
-        pulFr.requestFocus()
+        if (modelState.currentRecord.diastolicPressure.length == 2) {
+            pulFr.requestFocus()
+        }
     }
     LaunchedEffect(modelState.currentRecord.pulse.length == 2){
-        comFr.requestFocus()
+        if (modelState.currentRecord.pulse.length == 2) {
+            comFr.requestFocus()
+        }
     }
     LaunchedEffect(key1 = modelState.currentRecord.systolicPressure.isBlank()) {
         if (modelState.currentRecord.systolicPressure.isBlank())
@@ -149,6 +154,7 @@ fun EditScreen(
                 },
                 placeholder = "Comment",
                 isError = false,
+                keyboardOptions = KeyboardOptions.Default,
                 modifier = Modifier
                     .height(140.dp)
                     .fillMaxWidth(0.925f)

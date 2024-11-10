@@ -1,18 +1,24 @@
 package co.uk.purpleeagle.bloodpressure2.viewmodel
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.TrendingUp
-import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
+import androidx.compose.material.icons.rounded.Edit
+import androidx.compose.material.icons.rounded.FileDownload
+import androidx.compose.material.icons.rounded.Folder
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import co.uk.purpleeagle.bloodpressure2.model.csv.Csv
 import co.uk.purpleeagle.bloodpressure2.navigationWrapper
-import co.uk.purpleeagle.bloodpressure2.view.screens.*
+import co.uk.purpleeagle.bloodpressure2.view.screens.CsvScreen
+import co.uk.purpleeagle.bloodpressure2.view.screens.DirectoryScreen
+import co.uk.purpleeagle.bloodpressure2.view.screens.EditScreen
+import co.uk.purpleeagle.bloodpressure2.view.screens.GraphScreen
+import co.uk.purpleeagle.bloodpressure2.view.screens.ListScreen
 
 val navPages = listOf(
     Pages.LIST,
     Pages.CSV,
-    Pages.GRAPH
+    //Pages.GRAPH
 )
 
 enum class Pages(
@@ -42,9 +48,8 @@ enum class Pages(
         },
         label = "Edit",
         imageVector = Icons.Rounded.Edit,
-        screen = { uiState, modelState, onEvent ->
+        screen = { _, modelState, onEvent ->
             EditScreen(
-                uiState = uiState,
                 modelState = modelState,
                 onEvent = onEvent
             )
@@ -84,7 +89,7 @@ enum class Pages(
     GRAPH(
         route = "graphs",
         label = "Graphs",
-        imageVector = Icons.Filled.TrendingUp,
+        imageVector = Icons.AutoMirrored.Filled.TrendingUp,
         onNavigate = {
 
         },
